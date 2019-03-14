@@ -2,7 +2,8 @@ import numpy as np
 from .tools import moving_average
 
 
-def head_direction_rate(spike_train, head_angles, t, binsize=4, n_avg_bin=4):
+def head_direction_rate(spike_train, head_angles, t,
+                        n_bins=36, avg_window=4):
     """
     Calculeate firing rate at head direction in binned head angles for time t.
     Moving average filter is applied on firing rate
@@ -14,9 +15,7 @@ def head_direction_rate(spike_train, head_angles, t, binsize=4, n_avg_bin=4):
         all recorded head directions
     t : array
         1d vector of times at x, y positions
-    binsize : float
-        angular binsize
-    n_avg_bin : int
+    avg_window : int
         number of bins to average over
 
     Returns
@@ -33,7 +32,7 @@ def head_direction_rate(spike_train, head_angles, t, binsize=4, n_avg_bin=4):
     time_in_bin = np.append(time_in_bin, 0)
 
     # bin head_angles
-    ang_bins = np.linspace(0, 2.0*np.pi, 36)
+    ang_bins = np.linspace(0, 2.0 * np.pi, n_bins + 1)
 
     spikes_in_ang, _ = np.histogram(head_angles, weights=spikes_in_bin, bins=ang_bins)
     time_in_ang, _ = np.histogram(head_angles, weights=time_in_bin, bins=ang_bins)
@@ -41,7 +40,7 @@ def head_direction_rate(spike_train, head_angles, t, binsize=4, n_avg_bin=4):
     with np.errstate(divide='ignore', invalid='ignore'):
         rate_in_ang = np.divide(spikes_in_ang, time_in_ang)
 
-    rate_in_ang = moving_average(rate_in_ang, n_avg_bin)
+    rate_in_ang = moving_average(rate_in_ang, avg_window)
     return ang_bins[:-1], rate_in_ang
 
 
