@@ -39,7 +39,6 @@ def head_direction_rate(spike_train, head_angles, t,
 
     with np.errstate(divide='ignore', invalid='ignore'):
         rate_in_ang = np.divide(spikes_in_ang, time_in_ang)
-
     rate_in_ang = moving_average(rate_in_ang, avg_window)
     return ang_bins[:-1], rate_in_ang
 
@@ -62,8 +61,6 @@ def head_direction_score(head_angle_bins, rate):
     """
     import math
     import pycircstat as pc
-    # if any(np.isnan(rate)):
-        # raise ValueError('Nan not supported')
     nanIndices = np.where(np.isnan(rate))
     head_angle_bins = np.delete(head_angle_bins, nanIndices)
     mean_ang = pc.mean(head_angle_bins, w=rate)

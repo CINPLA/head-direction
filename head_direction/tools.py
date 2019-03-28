@@ -43,6 +43,7 @@ def moving_average(vector, N):
     >>> moving_average(a, 5)
     array([4., 3., 2., 3., 4., 5., 6., 7., 6., 5.])
     """
+    vector[np.isnan(vector)] = 0
     if N * 2 > len(vector):
         raise ValueError('Window must be at least half of "len(vector)"')
     vector = np.concatenate((vector[-N:], vector, vector[:N]))
