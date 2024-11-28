@@ -1,9 +1,9 @@
+# -*- coding: utf-8 -*-
 import numpy as np
-import scipy.signal as sig
 
 
 def unit_vector(v):
-    """ Return unit vector of v
+    """Return unit vector of v
     modified from David Wolever,
     https://stackoverflow.com/questions/2827393/angles
     -between-two-n-dimensional-vectors-in-python
@@ -47,11 +47,11 @@ def moving_average(vector, N):
     if N * 2 > len(vector):
         raise ValueError('Window must be at least half of "len(vector)"')
     vector = np.concatenate((vector[-N:], vector, vector[:N]))
-    return np.convolve(vector, np.ones((N,)) / N, mode='same')[N:-N]
+    return np.convolve(vector, np.ones((N,)) / N, mode="same")[N:-N]
 
 
 def angle_between_vectors(v1, v2):
-    """ Returns the angle in radians between vectors 'v1' and 'v2'
+    """Returns the angle in radians between vectors 'v1' and 'v2'
     modified from David Wolever,
     https://stackoverflow.com/questions/2827393/angles
     -between-two-n-dimensional-vectors-in-python
