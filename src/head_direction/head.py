@@ -1,9 +1,10 @@
+# -*- coding: utf-8 -*-
 import numpy as np
+
 from .tools import moving_average
 
 
-def head_direction_rate(spike_train, head_angles, t,
-                        n_bins=36, avg_window=4):
+def head_direction_rate(spike_train, head_angles, t, n_bins=36, avg_window=4):
     """
     Calculeate firing rate at head direction in binned head angles for time t.
     Moving average filter is applied on firing rate
@@ -37,7 +38,7 @@ def head_direction_rate(spike_train, head_angles, t,
     spikes_in_ang, _ = np.histogram(head_angles, weights=spikes_in_bin, bins=ang_bins)
     time_in_ang, _ = np.histogram(head_angles, weights=time_in_bin, bins=ang_bins)
 
-    with np.errstate(divide='ignore', invalid='ignore'):
+    with np.errstate(divide="ignore", invalid="ignore"):
         rate_in_ang = np.divide(spikes_in_ang, time_in_ang)
     rate_in_ang = moving_average(rate_in_ang, avg_window)
     return ang_bins[:-1], rate_in_ang
@@ -59,8 +60,8 @@ def head_direction_score(head_angle_bins, rate):
     out : float, float
         mean angle, mean vector length
     """
-    import math
     import pycircstat as pc
+
     nanIndices = np.where(np.isnan(rate))
     head_angle_bins = np.delete(head_angle_bins, nanIndices)
     mean_ang = pc.mean(head_angle_bins, w=rate)
@@ -69,7 +70,7 @@ def head_direction_score(head_angle_bins, rate):
     return mean_ang, mean_vec_len
 
 
-def head_direction(x1, y1, x2, y2, t, filt=2.):
+def head_direction(x1, y1, x2, y2, t, filt=2.0):
     """
     Calculeate head direction in angles or radians for time t
 
@@ -98,7 +99,7 @@ def head_direction(x1, y1, x2, y2, t, filt=2.):
     r = np.linalg.norm(dr, axis=0)
     r_mean = np.mean(r)
     r_std = np.std(r)
-    mask = (r > r_mean - filt*r_std)
+    mask = r > r_mean - filt * r_std
     x1 = x1[mask]
     y1 = y1[mask]
     x2 = x2[mask]

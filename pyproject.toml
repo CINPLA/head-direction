@@ -1,0 +1,59 @@
+[project]
+name = "head_direction"
+version = "0.1.0"
+authors = [
+    { name = "Mikkel Lepperod", email = "mikkel@simula.no" },
+    { name = "Alessio Buccino", email = "alessiop.buccino@gmail.com" },
+]
+
+description = "Analysis of head direction cells."
+readme = "README.md"
+requires-python = ">=3.10"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+
+dependencies = [
+    "numpy<2",
+    "scipy",
+    "astropy",
+    "pycircstat",
+    "pandas",
+    "elephant",
+    "matplotlib",
+    "nose"
+]
+
+[project.urls]
+homepage = "https://github.com/CINPLA/head-directopm"
+repository = "https://github.com/CINPLA/head-direction"
+
+[build-system]
+requires = ["setuptools>=62.0"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+include-package-data = true
+
+[tool.setuptools.packages.find]
+where = ["src"]
+include = ["head_direction*"]
+namespaces = false
+
+[project.optional-dependencies]
+dev = ["pre-commit", "black[jupyter]", "isort", "ruff"]
+test = ["pytest", "pytest-cov", "pytest-dependency", "mountainsort5"]
+docs = ["sphinx-gallery", "sphinx_rtd_theme"]
+full = [
+    "head_direction[dev]",
+    "head_direction[test]",
+    "head_direction[docs]",
+]
+
+[tool.coverage.run]
+omit = ["tests/*"]
+
+[tool.black]
+line-length = 120
