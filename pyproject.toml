@@ -1,59 +1,147 @@
+[build-system]
+requires = ["uv_build>=0.9.24,<0.10.0"]
+build-backend = "uv_build"
+
 [project]
 name = "head_direction"
-version = "0.1.0"
-authors = [
-    { name = "Mikkel Lepperod", email = "mikkel@simula.no" },
-    { name = "Alessio Buccino", email = "alessiop.buccino@gmail.com" },
-]
-
+version = "0.2.0"
 description = "Analysis of head direction cells."
 readme = "README.md"
-requires-python = ">=3.10"
+authors = [
+    { name = "Mikkel Lepperod", email = "mikkel@simula.no" },
+    { name = "Nicolai Haug", email = "nicolaih@simula.no" },
+    { name = "Alessio Buccino", email = "alessiop.buccino@gmail.com" },
+]
+requires-python = ">=3.12"
+keywords = ["neuroscience", "data-analysis", "head-direction-cells"]
 classifiers = [
     "Programming Language :: Python :: 3",
-    "License :: OSI Approved :: MIT License",
+    "License :: OSI Approved :: GNU General Public License v3 (GPLv3)",
     "Operating System :: OS Independent",
 ]
 
-dependencies = [
-    "numpy<2",
-    "scipy",
-    "astropy",
-    "pycircstat",
-    "pandas",
-    "elephant",
+dependencies = ["numpy>=1.24", "scipy"]
+
+[project.optional-dependencies]
+dev = [
+    "ipykernel",
     "matplotlib",
-    "nose"
+    "neo",
+    "notebook",
+    "pre-commit",
+    "pytest",
+    "ruff",
+    "watermark",
 ]
 
 [project.urls]
 homepage = "https://github.com/CINPLA/head-directopm"
 repository = "https://github.com/CINPLA/head-direction"
 
-[build-system]
-requires = ["setuptools>=62.0"]
-build-backend = "setuptools.build_meta"
-
-[tool.setuptools]
-include-package-data = true
-
-[tool.setuptools.packages.find]
-where = ["src"]
-include = ["head_direction*"]
-namespaces = false
-
-[project.optional-dependencies]
-dev = ["pre-commit", "black[jupyter]", "isort", "ruff"]
-test = ["pytest", "pytest-cov", "pytest-dependency", "mountainsort5"]
-docs = ["sphinx-gallery", "sphinx_rtd_theme"]
-full = [
-    "head_direction[dev]",
-    "head_direction[test]",
-    "head_direction[docs]",
+[tool.ruff]
+# Exclude a variety of commonly ignored directories.
+exclude = [
+    ".bzr",
+    ".direnv",
+    ".eggs",
+    ".git",
+    ".hg",
+    ".mypy_cache",
+    ".nox",
+    ".pants.d",
+    ".pytype",
+    ".ruff_cache",
+    ".svn",
+    ".tox",
+    ".venv",
+    "__pypackages__",
+    "_build",
+    "buck-out",
+    "build",
+    "dist",
+    "node_modules",
+    "venv",
 ]
 
-[tool.coverage.run]
-omit = ["tests/*"]
-
-[tool.black]
 line-length = 120
+indent-width = 4
+
+# Assume Python 3.12
+target-version = "py312"
+
+[tool.ruff.lint]
+# Enable rules from various plugins and categories
+select = [
+    "F",   # Pyflakes rules
+    "W",   # PyCodeStyle warnings
+    "E",   # PyCodeStyle errors
+    "B",   # Bugbear rules
+    "I",   # Sort imports properly
+    "N",   # Naming conventions
+    "UP",  # Warn if certain things can changed due to newer Python versions
+    "C4",  # Catch incorrect use of comprehensions, dict, list, etc
+    "ISC", # Good use of string concatenation
+    "ICN", # Use common import conventions
+    "RET", # Good return practices
+    "SIM", # Common simplification rules
+    "TID", # Some good import practices
+    "TC",  # Enforce importing certain types in a TYPE_CHECKING block
+    "PTH", # Use pathlib instead of os.path
+    "NPY", # Some numpy-specific things
+    "PD",  # Pandas-specific rules
+    "RUF", # Ruff-specific rules
+]
+
+ignore = [
+    "E501", # Line length handled by formatter
+    "N806", # UPPER_CASE used for constant local variables
+]
+
+unfixable = [
+    "B",      # Avoid trying to fix flake8-bugbear (`B`) violations
+    "F841",   # Unused variable. ruff keeps the call, but mostly we want to get rid of it all
+    "F601",   # Automatic fix might obscure issue
+    "F602",   # Automatic fix might obscure issue
+    "UP036",  # Sometimes it's better to just noqa this
+    "SIM222", # Automatic fix might obscure issue
+    "SIM223", # Automatic fix might obscure issue
+]
+
+# Allow unused variables when underscore-prefixed
+dummy-variable-rgx = "^(_+|(_+[a-zA-Z0-9_]*[a-zA-Z0-9]+?))$"
+
+[tool.ruff.lint.mccabe]
+# Unlike Flake8, default to a complexity level of 10.
+max-complexity = 10
+
+# Ignore import violations in all `__init__.py` files, and in selected subdirectories.
+[tool.ruff.lint.per-file-ignores]
+"__init__.py" = ["F401", "E402"]
+"**/{tests,docs,tools}/*" = ["E402"]
+
+[tool.ruff.format]
+# Like Black, use double quotes for strings.
+quote-style = "double"
+
+# Like Black, indent with spaces, rather than tabs.
+indent-style = "space"
+
+# Like Black, respect magic trailing commas.
+skip-magic-trailing-comma = false
+
+# Like Black, automatically detect the appropriate line ending.
+line-ending = "auto"
+
+# Enable auto-formatting of code examples in docstrings. Markdown,
+# reStructuredText code/literal blocks and doctests are all supported.
+#
+# This is currently disabled by default, but it is planned for this
+# to be opt-out in the future.
+docstring-code-format = false
+
+# Set the line length limit used when formatting code snippets in
+# docstrings.
+#
+# This only has an effect when the `docstring-code-format` setting is
+# enabled.
+docstring-code-line-length = "dynamic"
