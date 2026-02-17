@@ -4,7 +4,6 @@ on:
   push:
     branches: [main]
 
-# Permissions for GitHub Pages deployment
 permissions:
   contents: read
   pages: write
@@ -27,18 +26,18 @@ jobs:
         run: uv python install 3.12
 
       - name: Install dependencies
+        # Explicitly sync the 'dev' group where jupyter-book lives
         run: uv sync --all-extras --dev
 
       - name: Build the book
         run: |
-          # We explicitly point to the docs/ folder
-          uv run python -m jupyter_book.cli build docs/
-          # No .nojekyll needed when using the Actions upload-pages-artifact method!
+          # Use 'uv run' to ensure the environment is active
+          # and point specifically to the docs folder
+          uv run jupyter-book build docs/
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          # Point to where the Python build actually puts the files
           path: 'docs/_build/html'
 
   deploy:
