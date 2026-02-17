@@ -1,0 +1,16 @@
+# Book settings
+title: Head Direction Analysis
+author: Mikkel Lepperød, Nicolai Haug, Alessio Buccino
+logo: "logo.png"
+copyright: "2026"
+
+# Execution settings
+execute:
+  execute_notebooks: auto  # Execute notebooks only if they haven't been executed
+
+# Sphinx configuration
+sphinx:
+  config:
+    html_theme_options:
+      repository_url: https://github.com/CINPLA/head-direction
+      use_repository_button: true
