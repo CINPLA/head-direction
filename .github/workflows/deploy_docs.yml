@@ -27,9 +27,11 @@ jobs:
       - name: Install dependencies
         run: uv sync --all-extras --dev
 
-      # Build the book
+      # Build the book and disable Jekyll
       - name: Build the book
-        run: uv run jupyter-book build docs/
+        run: |
+          uv run jupyter-book build docs/
+          touch docs/_build/html/.nojekyll
 
       # Push the book's HTML to the gh-pages branch
       - name: GitHub Pages action
