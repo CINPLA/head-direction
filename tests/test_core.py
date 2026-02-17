@@ -144,7 +144,7 @@ def test_head_rate_mock_neo():
     times = np.linspace(0, 1, 10)
 
     # Use cast(Any, spikes) to bypass the strict type check for this mock object
-    _, rate = head_direction_rate(cast(Any, spikes), angles, times, num_bins=4, smoothing_window=0)
+    _, rate = head_direction_rate(cast("Any", spikes), angles, times, num_bins=4, smoothing_window=0)
     assert rate[0] > 0
 
 

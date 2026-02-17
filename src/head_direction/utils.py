@@ -27,11 +27,11 @@ def to_unitless(data: Any, target_unit: str | None = None) -> np.ndarray:
     if target_unit and hasattr(data, "rescale"):
         # Treat data as Any for a moment.
         # This allows us to access .rescale and .magnitude without errors.
-        return cast(Any, data).rescale(target_unit).magnitude
+        return cast("Any", data).rescale(target_unit).magnitude
 
     # Try getting magnitude (raw units)
     if hasattr(data, "magnitude"):
-        return cast(Any, data).magnitude
+        return cast("Any", data).magnitude
 
     # Fallback (assume it's already a list/array)
     return np.asarray(data)
