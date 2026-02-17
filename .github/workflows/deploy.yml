@@ -26,19 +26,17 @@ jobs:
         run: uv python install 3.12
 
       - name: Install dependencies
-        # Explicitly sync the 'dev' group where jupyter-book lives
         run: uv sync --all-extras --dev
 
       - name: Build the book
         run: |
-          # Use 'uv run' to ensure the environment is active
-          # and point specifically to the docs folder
-          uv run jupyter-book build docs/
+          # Force output to the root-level _build folder
+          uv run jupyter-book build docs/ --path-output ./
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: 'docs/_build/html'
+          path: '_build/html'
 
   deploy:
     needs: build
