@@ -30,13 +30,18 @@ jobs:
 
       - name: Build the book
         run: |
-          # Force output to the root-level _build folder
-          uv run jupyter-book build docs/ --path-output ./
+          # Use verbose mode to see exactly what Jupyter Book is doing
+          uv run jupyter-book build -v docs/
+
+      - name: List files for debugging
+        run: |
+          echo "Checking for build output..."
+          find . -name "index.html"
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: '_build/html'
+          path: 'docs/_build/html'
 
   deploy:
     needs: build
