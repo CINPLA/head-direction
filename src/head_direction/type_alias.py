@@ -14,4 +14,4 @@ type ArrayLike = np.ndarray | list[float] | tuple[float, ...]
 # 2. A Neo SpikeTrain (if neo is installed)
 # 3. A Quantities array (if quantities is installed)
 # 4. A list/iterable of Neo SpikeTrains
-type SpikeInput = np.ndarray | "neo.SpikeTrain" | "pq.Quantity" | list["neo.SpikeTrain"] | list["pq.Quantity"]
+type SpikeInput = "np.ndarray | neo.SpikeTrain | pq.Quantity | list[neo.SpikeTrain] | list[pq.Quantity]"
