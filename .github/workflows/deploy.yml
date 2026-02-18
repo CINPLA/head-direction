@@ -30,11 +30,7 @@ jobs:
 
       - name: Build the book
         run: |
-          # PYTHONPATH=. ensures the notebooks can import your 'head_direction' package
-          # --all forces a fresh build
-          # -W turns warnings (like missing files) into errors
-          export PYTHONPATH=$PYTHONPATH:$(pwd)/src
-          uv run jupyter-book build --all docs/
+          uv run jupyter-book build docs/
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
