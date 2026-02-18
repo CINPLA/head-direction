@@ -596,3 +596,6 @@ $RECYCLE.BIN/
 
 # Windows shortcuts
 *.lnk
+
+# MyST build outputs
+_build
