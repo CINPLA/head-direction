@@ -5,13 +5,3 @@ API Reference
    :members:
    :undoc-members:
    :show-inheritance:
-
-.. automodule:: head_direction.core
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-.. automodule:: head_direction.utils
-   :members:
-   :undoc-members:
-   :show-inheritance:

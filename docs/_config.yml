@@ -3,14 +3,49 @@ title: Head Direction Analysis
 author: Mikkel Lepperød, Nicolai Haug, Alessio Buccino
 logo: "logo.png"
 copyright: "2026"
+only_build_toc_files: true
 
 # Execution settings
 execute:
   execute_notebooks: auto  # Execute notebooks only if they haven't been executed
 
+# Information about where the book exists on the web
+repository:
+  url: https://github.com/CINPLA/head-direction # Online location of your book
+  branch: main  # Which branch of the repository should be used when creating links (optional)
+
+launch_buttons:
+  notebook_interface: "jupyterlab" # The interface interactive links will activate ["classic", "jupyterlab"]
+  binderhub_url: "https://mybinder.org"
+
+html:
+  use_issues_button: true
+  use_repository_button: true
+
+parse:
+  myst_enable_extensions:
+    - amsmath
+    - dollarmath
+    - linkify
+
 # Sphinx configuration
 sphinx:
   config:
+    bibtex_bibfiles: ["refs.bib"]
+    nb_execution_show_tb: True
     html_theme_options:
-      repository_url: https://github.com/CINPLA/head-direction
-      use_repository_button: true
+      navigation_with_keys: false
+    html_last_updated_fmt: "%b %d, %Y"
+    nb_custom_formats:  # https://jupyterbook.org/en/stable/file-types/jupytext.html#file-types-custom
+        .py:
+            - jupytext.reads
+            - fmt: py
+
+  extra_extensions:
+  - 'sphinx.ext.autodoc'
+  - 'sphinx.ext.napoleon'
+  - 'sphinx.ext.viewcode'
+  - "sphinxcontrib.bibtex"
+
+
+exclude_patterns: [".pytest_cache/*", ".github/*", "venv/*", ".venv/*"]
