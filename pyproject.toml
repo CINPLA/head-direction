@@ -25,7 +25,7 @@ dependencies = ["numpy>=1.24", "scipy"]
 [project.optional-dependencies]
 dev = [
     "ipykernel",
-    "jupyter-book>=2.1.2",
+    "jupyter-book<2",
     "matplotlib",
     "neo",
     "notebook",
