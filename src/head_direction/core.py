@@ -157,10 +157,15 @@ def head_direction(
     an offset of +pi/2 is subtracted to align the result with the nose.
 
     Table of common offsets (assuming LED2->LED1 vector):
-    - 0.0 rad:   LED1=Front, LED2=Back (Standard)
-    - pi/2 rad:  LED1=Left,  LED2=Right
-    - pi rad:    LED1=Back,  LED2=Front (Inverted)
-    - -pi/2 rad: LED1=Right, LED2=Left
+
+    ============ ============ =====================
+    Offset (rad) LED 1        LED 2
+    ============ ============ =====================
+    0.0          Front        Back (Assumed Default)
+    pi/2         Left         Right
+    pi           Back         Front (Inverted)
+    -pi/2        Right        Left
+    ============ ============ =====================
 
     Use `head_direction.get_alignment_offset` to find this value automatically.
 
