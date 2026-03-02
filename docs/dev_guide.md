@@ -4,7 +4,7 @@ This document provides guidelines for maintaining and developing this project. F
 
 ---
 
-### uv
+## uv
 We use [uv](https://docs.astral.sh/uv/) for dependency management and environment isolation. It replaces `pip`, `conda`, and `venv`.
 
 **Install**
@@ -16,7 +16,9 @@ curl -LsSf [https://astral.sh/uv/install.sh](https://astral.sh/uv/install.sh) | 
 powershell -c "irm [https://astral.sh/uv/install.ps1](https://astral.sh/uv/install.ps1) | iex"
 ```
 
-> **IMPORTANT:**  Ensure you are not in a Conda base environment when using `uv`. Deactivate conda first (`conda deactivate`) to avoid path conflicts
+```{caution}
+Ensure you are not in a Conda base environment when using `uv`. Deactivate conda first (`conda deactivate`) to avoid path conflicts
+```
 
 
 **Adding dependencies**
@@ -50,7 +52,7 @@ uv self update
 
 ---
 
-### pre-commit
+## pre-commit
 
 We use [pre-commit](https://pre-commit.com/) as our project's gatekeeper. It acts as an automated "health check" that runs every time you try to commit code. Instead of manually checking your code, pre-commit automatically triggers Ruff (for linting and formatting) to ensure everything is perfect before it hits the repository. Our configuration is specified in the `.pre-commit-config.yml` file.
 
@@ -85,7 +87,7 @@ uv run pre-commit autoupdate
 
 ---
 
-### Ruff
+## Ruff
 We use [Ruff](https://docs.astral.sh/ruff/) as an all-in-one linter, formatter, and import sorter. It is significantly faster than traditional tools like Black or Flake8.
 
 **Common commands**
@@ -100,11 +102,13 @@ uv run ruff check --fix
 uv run ruff format
 ```
 
-> **TIP:**  If you use VS Code or Cursor, install the Ruff extension. It will highlight errors as you type and can be configured to "Format on Save."
+```{note}
+If you use VS Code or Cursor, install the Ruff extension. It will highlight errors as you type and can be configured to "Format on Save."
+```
 
 ---
 
-### Jupyter Book (documentation)
+## Jupyter Book (documentation)
 
 The documentation is powered by [Jupyter Book (ver. 1)](https://jupyterbook.org/v1/).
 
@@ -134,6 +138,6 @@ The documentation can be opened with:
 open docs/_build/html/intro.html
 ```
 
-> **NOTE:**  VS Code has a syntax highlightning for all the supported Jupyter Book file formats.
-
----
+```{note}
+VS Code has a syntax highlightning for all the supported Jupyter Book file formats.
+```

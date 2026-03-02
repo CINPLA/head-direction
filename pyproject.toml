@@ -36,7 +36,7 @@ dev = [
 ]
 
 [project.urls]
-homepage = "https://github.com/CINPLA/head-directopm"
+homepage = "https://cinpla.github.io/head-direction/"
 repository = "https://github.com/CINPLA/head-direction"
 
 [tool.ruff]

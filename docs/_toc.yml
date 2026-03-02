@@ -4,6 +4,7 @@ parts:
   - caption: Guides
     chapters:
     - file: tutorials/getting_started
+    - file: dev_guide
 
   - caption: Reference
     chapters:

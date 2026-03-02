@@ -13,14 +13,17 @@ execute:
 repository:
   url: https://github.com/CINPLA/head-direction # Online location of your book
   branch: main  # Which branch of the repository should be used when creating links (optional)
+  path_to_book: "docs"  # Path to the book within the repository (optional)
 
 launch_buttons:
   notebook_interface: "jupyterlab" # The interface interactive links will activate ["classic", "jupyterlab"]
   binderhub_url: "https://mybinder.org"
 
 html:
+  favicon: "favicon.ico"
   use_issues_button: true
   use_repository_button: true
+  home_page_in_navbar: true
 
 parse:
   myst_enable_extensions:
@@ -47,5 +50,5 @@ sphinx:
   - 'sphinx.ext.viewcode'
   - "sphinxcontrib.bibtex"
 
-
-exclude_patterns: [".pytest_cache/*", ".github/*", "venv/*", ".venv/*"]
+# Patterns to skip when building the book. Can be glob-style (e.g. "*skip.ipynb")
+exclude_patterns: [".pytest_cache/*", ".github/*", "venv/*", ".venv/*", "_build/*", "Thumbs.db", ".DS_Store", "**.ipynb_checkpoints"]

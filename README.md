@@ -1,5 +1,10 @@
 # Head Direction Analysis
 
+[![Documentation](https://img.shields.io/badge/docs-Jupyter--Book-blue.svg)](https://cinpla.github.io/head-direction/)
+[![PyPI version](https://badge.fury.io/py/head-direction.svg)](https://badge.fury.io/py/head-direction)
+[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
+[![Build Status](https://github.com/cinpla/head-direction/actions/workflows/deploy-docs.yml/badge.svg)](https://github.com/cinpla/head-direction/actions)
+
 A Python package for the analysis of head direction cells. It provides robust tools for reconstructing head angles from tracking data, computing firing rate tuning curves, and quantifying directionality using Rayleigh vector analysis.
 
 ## Key Features
@@ -9,6 +14,10 @@ A Python package for the analysis of head direction cells. It provides robust to
 * **Duck typing support**: Works seamlessly with NumPy arrays, lists, [Neo](https://neuralensemble.org/neo/) `SpikeTrain` objects, and [Quantities](https://python-quantities.readthedocs.io/).
 * **Statistical scoring**: Computes Mean Vector Length and Mean Angle to quantify tuning strength.
 
+## Documentation
+
+Visit our [online documentation](https://cinpla.github.io/head-direction/).
+
 ## Installation
 
 ### For Users
@@ -17,7 +26,6 @@ You can install the package directly using `pip`:
 ```bash
 pip install head_direction
 ```
-
 
 ## Quick Start
 
