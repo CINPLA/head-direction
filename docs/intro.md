@@ -6,7 +6,7 @@
 
 * **Robust angle reconstruction**: Calculates head direction from two tracked LEDs with artifact rejection.
 * **Auto-calibration**: Automatically detects and corrects for unknown LED orientations (e.g., side-mounted ears vs. front/back) using velocity vector alignment.
-* **Duck typing support**: Works seamlessly with NumPy arrays, lists, [Neo](https://neuralensemble.org/neo/) `SpikeTrain` objects, and [Quantities](https://python-quantities.readthedocs.io/).
+* **Duck typing support**: Works seamlessly with NumPy arrays, lists, and [Neo](https://neuralensemble.org/neo/) `SpikeTrain` objects.
 * **Statistical scoring**: Computes Mean Vector Length and Mean Angle to quantify tuning strength.
 
 ## Installation
